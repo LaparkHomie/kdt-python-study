@@ -169,3 +169,19 @@
 # a = [1, 2, 3, 4]
 # result = [num * 3 for num in a if num % 2 == 0]
 # print(result)
+
+#import random
+# from random import randint
+#
+# i = 0
+# while i != 3:
+# 	i = randint(1, 6)
+# 	print(i)
+
+def hap(a, b):
+	return a + b
+
+if __name__ == "__main__":
+	x = 10
+	y = 20
+	print(hap(x, y))

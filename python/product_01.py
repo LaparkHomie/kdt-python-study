@@ -36,7 +36,7 @@ for i in range(0, 4):
 
 dct["판매금액"] = dct["수량"] * dct["단가"]
 
-print("")
+print()
 print("제품코드   제품명    수량    단가    판매금액")
 print("==============================================")
 print("%4s    %4s  %4d     %4d   %6d" % tuple(dct.values()))
