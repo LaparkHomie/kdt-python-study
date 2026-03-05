@@ -6,10 +6,10 @@ sz_title = "입력", "출력", "조회", "수정", "삭제", "종료"
 keys = "학번", "이름", "국어", "영어", "수학", "총점", "평균", "등급"
 rank_grade = dict(zip(tuple("수우미양가"), (90, 80, 70, 60, 0)))
 sz_ptr = "%-8s", "%-8s", "%-8d", "%-8d", "%-8d", "%-8d", "%-8.2f", "%-8s"
-loop_ptr = 65
+loop_ptr = 61
 
 def menu_title():
-	print("*** 제품관리 ***")
+	print("*** 성적관리 ***")
 	for i in range(len(sz_title) - 1):
 		print("%d. 성적정보 %s" % (i + 1, sz_title[i]))
 	print("%d. 프로그램 %s" % (6, sz_title[5]))
@@ -21,6 +21,7 @@ def input_sungjuk():
 		first_file = False
 
 	dct = {}
+	dct = dict(zip(keys[5], tuple(map(input, map(lambda x: x + " 입력 => ", keys[5])))))
 	for i in range(0, 5):
 		dct[keys[i]] = input(keys[i] + " 입력 => ")
 
