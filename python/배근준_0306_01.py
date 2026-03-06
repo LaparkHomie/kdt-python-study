@@ -1,4 +1,4 @@
-﻿from sungjuk_class import Sungjuk
+﻿from 배근준_0306_02 import Sungjuk
 import sys
 import os
 
@@ -16,15 +16,18 @@ def menu_title():
 
 def input_sungjuk():
 	obj = Sungjuk()
-	try:
-		obj.input_sungjuk(slice(0, 5))
-	except Exception as e:
-		pass
-	else:
-		obj.proess_sungjuk()
-		lst.append(obj)
+	while True:
+		try:
+			obj.input_sungjuk(slice(0, 5))
+		except Exception as e:
+			print()
+		else:
+			break
 
-		print("\n성적 입력 성공!!!\n")
+	obj.proess_sungjuk()
+	lst.append(obj)
+
+	print("\n성적 입력 성공!!!\n")
 
 def print_sungjuk():
 	if len(lst) == 0:
@@ -40,7 +43,13 @@ def print_sungjuk():
 	print("학생수: %d, 전체 평균: %.2f" % (len(lst), tot_avg / len(lst)))
 
 def search_sungjuk():
-	sid = input("조회할 학번을 입력 => ")
+	while True:
+		try:
+			sid = Sungjuk.input_sid("조회")
+		except Exception as e:
+			print()
+		else:
+			break
 
 	for obj in lst:
 		if obj.sid == sid:
@@ -53,25 +62,38 @@ def search_sungjuk():
 		print("\n조회할 데이터가 없음!!!\n")
 
 def update_sungjuk():
-	sid = input("수정할 학번을 입력 => ")
+	while True:
+		try:
+			sid = Sungjuk.input_sid("수정")
+		except Exception as e:
+			print()
+		else:
+			break
 
 	for obj in lst:
 		if obj.sid == sid:
-			try:
-				obj.input_sungjuk(slice(2, 5))
-			except Exception as e:
-				pass
-			else:
-				obj.proess_sungjuk()
+			while True:
+				try:
+					obj.input_sungjuk(slice(2, 5))
+				except Exception as e:
+					print()
+				else:
+					obj.proess_sungjuk()
 
-				print("\n성적 수정 성공!!!\n")
-			finally:
-				break
+					print("\n성적 수정 성공!!!\n")
+					break
+			break
 	else:
 		print("\n수정할 데이터가 없음!!!\n")
 
 def delete_sungjuk():
-	sid = input("삭제할 학번을 입력 => ")
+	while True:
+		try:
+			sid = Sungjuk.input_sid("삭제")
+		except Exception as e:
+			print()
+		else:
+			break
 
 	for obj in lst:
 		if obj.sid == sid:
@@ -89,7 +111,7 @@ if __name__ == "__main__":
 		try:
 			menu = int(input("메뉴를 선택하세요 (1~6) => "))
 		except Exception as e:
-			print("숫자를 입력하세요!!(%s)" % e)
+			print("입력 오류!!!(숫자를 입력하세요)")
 			continue
 		if menu == 1:
 			input_sungjuk()

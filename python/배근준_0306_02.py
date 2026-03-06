@@ -105,8 +105,22 @@
 		try:
 			dct = dict(zip(self.__keys[boundary], tuple(map(input, map(lambda x: x + " 입력 => ", self.__titles[boundary])))))
 			dct.update(dict(zip(self.__keys[2:5], map(int, map(dct.get, self.__keys[2:5])))))
+
+			if boundary.start <= 0:
+				for i in range(2):
+					if dct[self.__keys[i]].strip() == "":
+						raise Exception("%s을 비워놓지 마시오!!" % self.__titles[i])
+
+			for i in range(2, 5):
+				if not 0 <= dct[self.__keys[i]] <= 100:
+					raise Exception("%s 성적 0부터 100 사이의 성적을 입력하시오!!" % self.__titles[i])
+
+		except ValueError as e:
+			print("입력 오류!!!(숫자를 입력하세요)")
+			raise
+
 		except Exception as e:
-			print("잘못된 입력이 들어왔습니다!!(%s)" % e)
+			print("입력 오류!!(%s)" % e)
 			raise
 		else:
 			self.update(dct)
@@ -119,8 +133,18 @@
 			if self._avg >= score:
 				self._grade = grade
 				break
+
+	@staticmethod
+	def input_sid(szMenu):
+		try:
+			sid = input("%s할 학번을 입력 => " % szMenu)
+			if sid.strip() == "":
+				raise Exception("학번을 비워놓지 마시오!!")
+		except Exception as e:
+			print("입력 오류!!(%s)" % e)
+			raise
 		else:
-			self._grade = grade
+			return sid
 
 	@staticmethod
 	def output_line():
@@ -135,14 +159,3 @@
 
 	def output_sungjuk(self):
 		print("".join(self.__sz_ptr) % self.values())
-
-if __name__ == "__main__":
-	obj = Sungjuk()
-	#obj.input_sungjuk()
-	#obj.proess_sungjuk()
-	print("\n\t\t\t*** 성적관리 ***")
-	print("======================================================")
-	print("학번    이름    국어    영어    수학    총점    평균  등급")
-	print("======================================================")
-	#obj.output_sungjuk()
-	print("======================================================")

@@ -1,6 +1,6 @@
 ﻿# print(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "test"))
 # sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "test"))
-from sungjuk_class import Sungjuk
+from 배근준_0306_02 import Sungjuk
 import sys
 import os
 
