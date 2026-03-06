@@ -1,4 +1,9 @@
-﻿from sungjuk_class import Sungjuk
+﻿# print(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "test"))
+# sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "test"))
+from sungjuk_class import Sungjuk
+import sys
+import os
+
 
 sz_title = "입력", "출력", "조회", "수정", "삭제", "종료"
 

@@ -1,8 +1,6 @@
-﻿# sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../.."))
-from sungjuk_class import Sungjuk
+﻿from sungjuk_class import Sungjuk
 import sys
 import os
-
 
 sz_title = "입력", "출력", "조회", "수정", "삭제", "종료"
 
@@ -12,16 +10,21 @@ def menu_title():
 	print("*** 성적관리 ***")
 	for i in range(len(sz_title) - 1):
 		print("%d. 성적정보 %s" % (i + 1, sz_title[i]))
-	print("%d. 프로그램 %s" % (6, sz_title[5]))
+	i = len(sz_title) - 1
+	print("%d. 프로그램 %s" % (i + 1, sz_title[i]))
 	print()
 
 def input_sungjuk():
 	obj = Sungjuk()
-	obj.input_sungjuk(slice(0, 5))
-	obj.proess_sungjuk()
-	lst.append(obj)
+	try:
+		obj.input_sungjuk(slice(0, 5))
+	except Exception as e:
+		pass
+	else:
+		obj.proess_sungjuk()
+		lst.append(obj)
 
-	print("\n성적 입력 성공!!!\n")
+		print("\n성적 입력 성공!!!\n")
 
 def print_sungjuk():
 	if len(lst) == 0:
@@ -54,12 +57,16 @@ def update_sungjuk():
 
 	for obj in lst:
 		if obj.sid == sid:
-			obj.input_sungjuk(slice(2, 5))
-			obj.proess_sungjuk()
+			try:
+				obj.input_sungjuk(slice(2, 5))
+			except Exception as e:
+				pass
+			else:
+				obj.proess_sungjuk()
 
-			print("\n성적 수정 성공!!!\n")
-
-			break
+				print("\n성적 수정 성공!!!\n")
+			finally:
+				break
 	else:
 		print("\n수정할 데이터가 없음!!!\n")
 
@@ -79,7 +86,11 @@ def delete_sungjuk():
 if __name__ == "__main__":
 	while True:
 		menu_title()
-		menu = int(input("메뉴를 선택하세요 (1~6) => "))
+		try:
+			menu = int(input("메뉴를 선택하세요 (1~6) => "))
+		except Exception as e:
+			print("숫자를 입력하세요!!(%s)" % e)
+			continue
 		if menu == 1:
 			input_sungjuk()
 		elif menu == 2:

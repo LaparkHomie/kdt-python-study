@@ -102,9 +102,14 @@
 			self.set(key, value)
 
 	def input_sungjuk(self, boundary):
-		dct = dict(zip(self.__keys[boundary], tuple(map(input, map(lambda x: x + " 입력 => ", self.__titles[boundary])))))
-		dct.update(dict(zip(self.__keys[2:5], map(int, map(dct.get, self.__keys[2:5])))))
-		self.update(dct)
+		try:
+			dct = dict(zip(self.__keys[boundary], tuple(map(input, map(lambda x: x + " 입력 => ", self.__titles[boundary])))))
+			dct.update(dict(zip(self.__keys[2:5], map(int, map(dct.get, self.__keys[2:5])))))
+		except Exception as e:
+			print("잘못된 입력이 들어왔습니다!!(%s)" % e)
+			raise
+		else:
+			self.update(dct)
 
 	def proess_sungjuk(self):
 		self._tot = sum(map(self.get, self.__keys[2:5]))
@@ -114,6 +119,8 @@
 			if self._avg >= score:
 				self._grade = grade
 				break
+		else:
+			self._grade = grade
 
 	@staticmethod
 	def output_line():
